@@ -1,0 +1,8 @@
+# 统一换行：Windows 批处理必须 CRLF，其它用 LF
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.txt text eol=crlf
+*.ico binary
+*.png binary
+*.exe binary

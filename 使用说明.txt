@@ -1,0 +1,33 @@
+dsh-token-bill —— DSH Token 总账
+=================================
+
+这是什么
+--------
+把你电脑上 DeepSeek Harness（DSH）的会话日志算成一张网页账单：
+白嫖（学校 API / 免费额度）了多少 token、自费了多少、每天用了多少。
+全部在你本机算，不联网、不上传、不花一分钱。
+
+怎么用（三步）
+--------------
+1. 先把整个压缩包解压出来（别在压缩包里直接双击）
+2. 进 dsh-token-bill 文件夹，双击 dsh-token-bill.exe
+3. 它会在同目录生成「token-账单.html」，并自动用浏览器打开；窗口 4 秒后自己关
+
+前提
+----
+这台电脑上装过 DSH 并且用它聊过天（要有 C:\Users\你的用户名\.dsh\sessions 里的日志）。
+没有日志的话，页面会提示你，不会报错。
+
+想更准一点
+----------
+1. 把 token-bill.config.example.json 复制成 token-bill.config.json，放在 exe 旁边
+2. 打开你 API 平台的账单页，把真实实付金额填进 "paid_actual_cny"，日期填 "paid_actual_date"
+3. 再双击 exe，「自费」那一栏就显示真钱，白嫖率也跟着变准
+
+杀毒软件报毒？
+--------------
+PyInstaller 单文件 exe 的通病（自解压容易被误判），不是真的有病毒。
+不放心就别用 exe，去仓库下源码用 Python 跑：python token_bill.py
+全部逻辑都在 token_bill.py 一个文件里。
+
+更多说明见仓库 README。

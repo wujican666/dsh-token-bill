@@ -1,0 +1,13 @@
+{
+  "dsh_home": "",
+  "output": "token-账单.html",
+  "free_providers": ["csu", "glm"],
+  "list_price": {
+    "input": 2.0,
+    "cache_read": 0.2,
+    "output": 3.0
+  },
+  "bill_rate": 0.0401,
+  "paid_actual_cny": null,
+  "paid_actual_date": ""
+}
