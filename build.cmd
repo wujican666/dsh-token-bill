@@ -30,6 +30,8 @@ echo [2/2] Building dist\dsh-token-bill\dsh-token-bill.exe ...
 
 copy /y "token-bill.config.example.json" "dist\dsh-token-bill\" >nul
 copy /y "使用说明.txt" "dist\dsh-token-bill\" >nul
+copy /y "token_bill.py" "dist\dsh-token-bill\" >nul
+copy /y "run-source.cmd" "dist\dsh-token-bill\" >nul
 
 echo.
 echo Done: %~dp0dist\dsh-token-bill\dsh-token-bill.exe
