@@ -3,6 +3,7 @@ build/
 dist/
 __pycache__/
 *.pyc
+token-bill.config.json
 
 # 本地生成物
 token-账单.html

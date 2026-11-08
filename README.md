@@ -21,10 +21,16 @@
 
 ### 方式一：下载压缩包（Windows，解压就能用）
 
-1. 到本仓库的 [Releases](../../releases) 下载 `dsh-token-bill-v1.2.0-win64.zip`
+1. 到本仓库的 [Releases](../../releases) 下载 `dsh-token-bill-v1.3.0-win64.zip`
 2. **解压**（别在压缩包里直接双击），进 `dsh-token-bill` 文件夹
-3. 双击 `dsh-token-bill.exe` → 同目录生成 `token-账单.html`，并用默认浏览器打开
-4. 前提：这台机器上**装过 DSH 并且用过**（要有 `~/.dsh/sessions` 里的日志）
+3. 双击 `dsh-token-bill.exe` → 自动打开浏览器里的账单页（页面服务只监听本机 `127.0.0.1`，不联网、不对外）
+4. 如果页面上出现「有 N 个 provider 认不出来」——**点按钮就行**：「学校的 / 公司的（免费额度）」或「我自费的」，
+   点完当场重算，并把这条规则写进 `token-bill.config.json`，以后自动生效
+5. 「图标与快捷方式」里挑一个图标（默认金币），点「在桌面放一个快捷方式」就能在桌面生成带图标的入口
+6. 用完关掉那个黑窗口就停止服务；账单和配置都留在文件夹里
+7. 前提：这台机器上**装过 DSH 并且用过**（要有 `~/.dsh/sessions` 里的日志）
+
+只想生成一张静态 html、不想启服务：`dsh-token-bill.exe --static`（老行为）。
 
 里面已经带了打包好的 Python 运行时，**不需要你自己装 Python**。
 压缩包里同时附了源码 `token_bill.py` 和 `run-source.cmd`——**万一 exe 被系统安全策略挡住**（见下面的 FAQ），
@@ -38,7 +44,8 @@
 
 ```bash
 # 需要 Python 3.14+（用的是标准库里的 compression.zstd）
-python token_bill.py                 # 生成网页并打开
+python token_bill.py                 # 起本机小页面（推荐）：认不出的平台点按钮就能改
+python token_bill.py --static        # 只生成一张静态 html 并打开（老行为）
 python token_bill.py --print         # 只在控制台打印摘要
 python token_bill.py --doctor        # 自检：日志在哪、每个 provider 怎么判定的
 python token_bill.py --json          # 输出机器可读 JSON
@@ -150,8 +157,11 @@ dsh-token-bill --unknown free
 
 | 参数 | 作用 |
 |---|---|
-| （无参数） | 生成网页 + 打开浏览器 + 打印摘要 |
-| `--no-open` | 只生成，不打开浏览器 |
+| （无参数） | 起本机小页面（`127.0.0.1`）+ 打开浏览器 + 打印摘要；页面上能点按钮改判定 |
+| `--static` | 不启服务，只生成静态 html（老行为） |
+| `--serve` | 明确要求起本机小页面（配合 `--demo` 等参数时用） |
+| `--port N` | 指定端口（默认 8730，被占用自动往后试 20 个） |
+| `--no-open` | 不打开浏览器（服务照常跑，地址打印在窗口里） |
 | `--out 路径` | 指定输出 html（等同 `--html`） |
 | `--print` | 只在控制台打印摘要（含 provider 判定表） |
 | `--doctor` | 自检：Python / 运行方式 / 日志在哪找到几个 / 每个 provider 怎么判定的 |

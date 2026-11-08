@@ -23,7 +23,7 @@ where py >nul 2>nul && set PY=py -3
 echo [2/2] Building dist\dsh-token-bill\dsh-token-bill.exe ...
 %PY% -m PyInstaller --noconfirm --onedir --console ^
   --name dsh-token-bill ^
-  --icon "%~dp0assets\token-icon.ico" ^
+  --icon "%~dp0assets\icons\coin.ico" ^
   --hidden-import compression.zstd --hidden-import _zstd ^
   --distpath dist --workpath build --specpath build ^
   token_bill.py || goto :fail
@@ -32,6 +32,7 @@ copy /y "token-bill.config.example.json" "dist\dsh-token-bill\" >nul
 copy /y "使用说明.txt" "dist\dsh-token-bill\" >nul
 copy /y "token_bill.py" "dist\dsh-token-bill\" >nul
 copy /y "run-source.cmd" "dist\dsh-token-bill\" >nul
+xcopy /y /i /e "assets\icons" "dist\dsh-token-bill\assets\icons\" >nul
 
 echo.
 echo Done: %~dp0dist\dsh-token-bill\dsh-token-bill.exe

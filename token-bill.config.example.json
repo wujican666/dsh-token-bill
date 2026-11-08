@@ -8,6 +8,9 @@
   "unknown_class": "skip",
   "_unknown_class说明": "认不出来的 provider 怎么处理：skip=单独列出来（默认）/ free=当免费额度 / paid=当自费",
 
+  "icon": "coin",
+  "_icon说明": "网页上选的图标（bill/campus/coin/chart/whale），只用于桌面快捷方式",
+
   "list_price": { "input": 2.0, "cache_read": 0.2, "output": 3.0 },
   "bill_rate": 0.0401,
 
